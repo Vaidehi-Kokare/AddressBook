@@ -28,6 +28,8 @@ public class AddressBookMain {
         System.out.println(addressBook1.contact.getEmailID());
 
         addressBook1.editContact();
+
+        addressBook1.deleteContact();
     }
 
 
