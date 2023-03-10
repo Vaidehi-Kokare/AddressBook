@@ -1,12 +1,12 @@
 package com.bridgelabz.addressbook;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
-    Contact contact = new Contact();
-
+    static Scanner scanner = new Scanner(System.in);
+    AddressBook a1 = new AddressBook();
+    ArrayList <Contacts> list = new ArrayList<>();
     void addContact() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Enter first name");
         String firstName = scanner.next();
         System.out.println("Enter last name");
@@ -23,58 +23,73 @@ public class AddressBook {
         String phoneNumber = scanner.next();
         System.out.println("Enter email-id");
         String emailID = scanner.next();
-        contact.setFirstName(firstName);
-        contact.setLastName(lastName);
-        contact.setAddress(address);
-        contact.setCity(city);
-        contact.setState(state);
-        contact.setZip(zipCode);
-        contact.setPhoneNumber(phoneNumber);
-        contact.setEmailID(emailID);
+
+        Contacts contactList = new Contacts(firstName, lastName, address, zipCode, city,state,phoneNumber,emailID);
+        list.add(contactList);
     }
 
-    public void editContact() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the first name of the contact you want to edit :");
-        String searchName = scanner.next();
-        if (this.contact.getFirstName().equalsIgnoreCase(searchName)) {
-            System.out.println("Enter firstName");
-            String firstName = scanner.next();
-            System.out.println("Enter lastName");
-            String lastName = scanner.next();
-            System.out.println("Enter address");
-            String address = scanner.next();
-            System.out.println("Enter city");
-            String city = scanner.next();
-            System.out.println("Enter State");
-            String state = scanner.next();
-            System.out.println("Enter Zip Code");
-            String zip = scanner.next();
-            System.out.println("Enter Phone number");
-            String phoneNumber = scanner.next();
-            System.out.println("Enter Phone number");
-            String emailID = scanner.next();
-            Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, emailID);
-            this.contact = contact;
+    public void editContact(){
+        System.out.println("Enter name whose details you want to edit");
+        String name = AddressBook.scanner.nextLine();
+        for (Contacts x : a1.list) {
+            if (x.getFirstName().equals(name)) {
+                System.out.println("Enter which details you want to edit eg. firstName, lastName etc ");
+                String check = AddressBook.scanner.nextLine();
+                switch (check) {
+                    case "firstName":
+                        System.out.println("Rename first Name to  ");
+                        x.setFirstName(AddressBook.scanner.nextLine());
+                        break;
+                    case "lastName":
+                        System.out.println("Rename last Name to  ");
+                        x.setLastName(AddressBook.scanner.nextLine());
+                        break;
+                    case "address":
+                        System.out.println("Rename address to  ");
+                        x.setAddress(AddressBook.scanner.nextLine());
+                        break;
+                    case "city":
+                        System.out.println("Rename city to  ");
+                        x.setCity(AddressBook.scanner.nextLine());
+                        break;
+                    case "zip":
+                        System.out.println("Rename zip to  ");
+                        x.setZip(AddressBook.scanner.nextInt());
+                        break;
+                    case "phone":
+                        System.out.println("Rename phone to  ");
+                        x.setPhone(AddressBook.scanner.nextLong());
+                        break;
+                    case "email":
+                        System.out.println("Rename email to  ");
+                        x.setEmail(AddressBook.scanner.nextLine());
+                        break;
+                    case "state":
+                        System.out.println("Rename state to  ");
+                        x.setState(AddressBook.scanner.nextLine());
+                        break;
+                    default:
+                        System.out.println("invalid entry");
+                }
+            }
         }
     }
 
-    public void deleteContact() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the first name of the contact you want to edit :");
-        String searchName = scanner.next();
-        if (contact.getFirstName().equalsIgnoreCase(searchName)) {
-            contact.setFirstName(null);
-            contact.setLastName(null);
-            contact.setFirstName(null);
-            contact.setLastName(null);
-            contact.setAddress(null);
-            contact.setCity(null);
-            contact.setState(null);
-            contact.setZip(null);
-            contact.setPhoneNumber(null);
-            contact.setEmailID(null);
+    public  void deleteContact(){
+        System.out.println("Delete a contact using name " );
+        String name = AddressBook.scanner.nextLine();
+        name = AddressBook.scanner.nextLine();
+
+        int count=0;
+
+        for(Contacts x : a1.list){
+            if(x.getFirstName().equals(name)){
+                a1.list.remove(count);
+                break;
+            }
+            count++;
         }
+        System.out.println(a1.list);
 
     }
 }
