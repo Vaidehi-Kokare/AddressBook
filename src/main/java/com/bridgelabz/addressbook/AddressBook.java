@@ -1,5 +1,7 @@
 package com.bridgelabz.addressbook;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -91,5 +93,13 @@ public class AddressBook {
         }
         System.out.println(a1.list);
 
+    }
+    public void addMultipleAddressBook(){
+        AddressBook a1 = new AddressBook();
+        Map<Integer,AddressBook> dictonary = new HashMap<>();
+        dictonary.put(1,a1);
+        for(Map.Entry<Integer,AddressBook> x : dictonary.entrySet()){
+            System.out.println(x.getKey()+" : "+x.getValue());
+        }
     }
 }
